@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="row" #formulario>
+                <div class="col-12 col-md-9 mt-3"><input id="title-item" class="form-control order-select form-control-lg" placeholder="Buscar..." name="title" type="text"></div>
+                <div class="col-8 col-md-2 mt-3">
+                    <div id="dropdown-options" class="dropdown select-extended-element" #menuSelect>
+                        <button id="selectTitleOrAuthor" class="btn btn-lg btn-block btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{menuOption1}}
+                            <span class="carot"></span>
+                        </button>
+            
+                        <ul class="dropdown-menu" aria-labelledby="selectTitleOrAuthor">
+                            <li (click)="toggle()" class="dropdown-item active" href="#">{{menuOption2}}</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-4 col-md-1 mt-3">
+                    <button (click)="search(formulario)" id="search-submit" class="btn btn-success btn-lg btn-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                          </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
