@@ -24,8 +24,9 @@ export class SearchComponent implements OnInit {
   }
 
   public search(input: any){
-    let selectTitleOrAuthor = document.querySelector('#selectTitleOrAuthor');
-    console.log(selectTitleOrAuthor?.innerHTML);
+    let query = document.querySelector('#title-item');
+    console.log(query);
+    let searchBy = this.menuOption1;
   }
 
 }

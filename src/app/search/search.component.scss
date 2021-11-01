@@ -6,3 +6,8 @@
     width: 100%;
 
 }
+
+.form-check-input:checked{
+    background-color: red;
+    display: inline-block ;
+}
