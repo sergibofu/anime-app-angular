@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { FetchJikanService } from './fetch-jikan.service';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { MangaDetailsComponent } from './manga-details/manga-details.component';
+import { HttpErrorInterceptorService } from './http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,14 @@ import { MangaDetailsComponent } from './manga-details/manga-details.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [FetchJikanService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true
+    },
+    FetchJikanService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
