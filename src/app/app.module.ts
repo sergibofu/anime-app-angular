@@ -14,6 +14,7 @@ import { FetchJikanService } from './fetch-jikan.service';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { MangaDetailsComponent } from './manga-details/manga-details.component';
 import { HttpErrorInterceptorService } from './http-error-interceptor.service';
+import { DisplaySearchedItemsComponent } from './display-searched-items/display-searched-items.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpErrorInterceptorService } from './http-error-interceptor.service';
     AnimeDisplayComponent,
     SearchComponent,
     AnimeDetailsComponent,
-    MangaDetailsComponent
+    MangaDetailsComponent,
+    DisplaySearchedItemsComponent
   ],
   imports: [
     BrowserModule,

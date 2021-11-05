@@ -9,14 +9,15 @@ import { ISearchParamsObject } from '../interfaces/searchParamsObject';
 })
 export class SearchComponent implements OnInit {
 
-  public toggleFlag: boolean = false;
+  public flag: boolean = false;
+  
   public showError: boolean = false;
   public errorMsg: string = '';
 
   public menuOption1 = 'anime';
   public menuOption2 = 'manga';
   public listOfGenres: any[] = [];
-  public response = [];
+  public response;
 
   constructor(private jikan: FetchJikanService) { }
 
@@ -62,7 +63,9 @@ export class SearchComponent implements OnInit {
     //los pasamos a la funcion de busqueda en el servicio jikan
     this.jikan.search(params)
     .subscribe((res)=>{
-      console.log(res.results);
+      this.response = res;
+      this.response.animeOrManga = animeOrManga;
+      this.flag = true;
     },
     (error)=>{
       this.showError = true;

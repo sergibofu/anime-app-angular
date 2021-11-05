@@ -11,13 +11,21 @@
 
 
 
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" [routerLink]="['/manga/12']">Previous</a></li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/manga/1']">1</a></li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/manga/2']">2</a></li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/manga/3']">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li *ngIf="prevActive" class="page-item"><a class="page-link" [routerLink]="['/manga' , page - 1]">Previous</a></li>
+          <li  [ngClass]="{'active': page == 1}" class="page-item"><a class="page-link" [routerLink]="['/manga', 1]">1</a></li>
+          <li [ngClass]="{'active': page == 2}" class="page-item"><a class="page-link" [routerLink]="['/manga', 2]">2</a></li>
+          <li [ngClass]="{'active': page == 3}" class="page-item"><a class="page-link" [routerLink]="['/manga', 3]">3</a></li>
+
+          <li  *ngIf="firstActive" class="page-item"><a class="page-link" [routerLink]="['/manga', page-1]">{{page-1}}</a></li>
+          <li [ngClass]="'active'" *ngIf="middleActive" class="page-item"><a class="page-link" [routerLink]="['/manga', page]">{{page}}</a></li>
+          <li *ngIf="lastActive" class="page-item"><a class="page-link" [routerLink]="['/manga', page+1]">{{page+1}}</a></li>
+            
+          <li [ngClass]="{'active': page == 18}" class="page-item"><a class="page-link" [routerLink]="['/manga', 18]">18</a></li>
+          <li [ngClass]="{'active': page == 19}" class="page-item"><a class="page-link" [routerLink]="['/manga', 19]">19</a></li>
+          <li [ngClass]="{'active': page == 20}" class="page-item"><a class="page-link" [routerLink]="['/manga', 20]">20</a></li>
+          <li *ngIf="nextActive" class="page-item"><a class="page-link" [routerLink]="['/manga' , page + 1]">Next</a></li>
         </ul>
 
       </nav>
