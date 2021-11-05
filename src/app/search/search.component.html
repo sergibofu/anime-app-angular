@@ -56,6 +56,9 @@
 
                 </div>
             </form>
+            <div *ngIf="showError" class="alert alert-danger" role="alert">
+                {{errorMsg}}
+              </div>
         </div>
     </div>
 </div>

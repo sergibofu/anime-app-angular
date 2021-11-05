@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FetchJikanService } from '../fetch-jikan.service';
 import { IAnime } from '../interfaces/anime';
 
@@ -9,24 +9,34 @@ import { IAnime } from '../interfaces/anime';
   styleUrls: ['./anime-display.component.scss']
 })
 export class AnimeDisplayComponent implements OnInit {
-  
-  public topAnimes: any = [];
 
-  constructor(private jikan: FetchJikanService, private router: Router) { 
+  public topAnimes: any = [];
+  public page: number = 1;
+
+  constructor(private jikan: FetchJikanService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    //al iniciar el componente, recuperamos los animes mas populares
-    this.jikan.getTopAnimes(1)
-    .subscribe(
-      (data)=>{
-        console.log(data.top);
-        this.topAnimes = data.top;
+    //recuperamos la id de la ruta y la almacenamos en la variable id
+    this.route.paramMap.subscribe(params => {
+      this.page = Number(params.get("page"));
+      this.getTopAnimes();
     });
+
+
   }
 
-  getAnimeDetails(id: string){
-     this.router.navigate(['/anime', 'details', Number(id)]);
+  getTopAnimes(){
+        //al iniciar el componente, recuperamos los animes mas populares
+        this.jikan.getTopAnimes(this.page)
+        .subscribe(
+          (data) => {
+            console.log(data.top);
+            this.topAnimes = data.top;
+          });
+  }
+  getAnimeDetails(id: string) {
+    this.router.navigate(['/anime', 'details', Number(id)]);
   }
 }
 

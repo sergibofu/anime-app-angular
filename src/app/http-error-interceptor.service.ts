@@ -4,7 +4,6 @@ import { catchError } from "rxjs/operators";
 
 export class HttpErrorInterceptorService implements HttpInterceptor{
         intercept(req: HttpRequest<any>, next: HttpHandler){
-            console.log('http petition started');   
             return next.handle(req)
             .pipe(catchError((error: HttpErrorResponse)=>{
                 return throwError(error.error);

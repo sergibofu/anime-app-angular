@@ -68,10 +68,8 @@ export class FetchJikanService {
     if(params.query != '') httpGetQuery += 'q=' + params.query + '&';
     if(stringListOfGenresById != '') httpGetQuery += 'genre=' + stringListOfGenresById;
 
-    console.log(httpGetQuery);
 
-    return this.http.get<IMangas | IAnimes>(httpGetQuery)
-    .pipe(retry(1), catchError(this.handleError));
+    return this.http.get<IMangas | IAnimes>(httpGetQuery);
   }
 
   returnStringListOfGenresById(arrayOfGenres: string[], animeOrManga:string){
@@ -93,10 +91,7 @@ export class FetchJikanService {
     return stringListOfGenresById;
   }
 
-  handleError(error: HttpErrorResponse){
-    let errorMessage = error.statusText;
-   return throwError(errorMessage);
-  }
+
 }
 
 //manga and anime genres

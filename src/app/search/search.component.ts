@@ -10,6 +10,8 @@ import { ISearchParamsObject } from '../interfaces/searchParamsObject';
 export class SearchComponent implements OnInit {
 
   public toggleFlag: boolean = false;
+  public showError: boolean = false;
+  public errorMsg: string = '';
 
   public menuOption1 = 'anime';
   public menuOption2 = 'manga';
@@ -29,6 +31,9 @@ export class SearchComponent implements OnInit {
   }
 
   public search(input: any){
+    //reseteamos la variable showError
+    this.showError = false;
+
     //guardamos si la busqueda es por titulo o por autor
     let animeOrManga = this.menuOption1;
 
@@ -57,7 +62,11 @@ export class SearchComponent implements OnInit {
     //los pasamos a la funcion de busqueda en el servicio jikan
     this.jikan.search(params)
     .subscribe((res)=>{
-      console.log(res);
+      console.log(res.results);
+    },
+    (error)=>{
+      this.showError = true;
+      this.errorMsg = error.message;
     });
 
 
