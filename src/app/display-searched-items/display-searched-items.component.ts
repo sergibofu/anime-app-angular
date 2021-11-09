@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,9 @@ export class DisplaySearchedItemsComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.response);
+  }
+
+  ngOnChanges(){
     this.animeOrManga = this.response.animeOrManga;
     this.searchedItems = this.response.results;
   }

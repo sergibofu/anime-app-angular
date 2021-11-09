@@ -63,6 +63,7 @@ export class SearchComponent implements OnInit {
     //los pasamos a la funcion de busqueda en el servicio jikan
     this.jikan.search(params)
     .subscribe((res)=>{
+
       this.response = res;
       this.response.animeOrManga = animeOrManga;
       this.flag = true;

@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { IAnime } from './interfaces/anime';
 import { IAnimes } from './interfaces/animes';
+import { IEpisodes } from './interfaces/episodes';
 import { IManga } from './interfaces/manga';
 import { IMangas } from './interfaces/mangas';
 import { ISearchParamsObject } from './interfaces/searchParamsObject';
@@ -65,6 +66,7 @@ export class FetchJikanService {
     //armamos los parametros de nuestra peticion get
     let httpGetQuery = this._url + 'search/'; //'https://api.jikan.moe/v3/search/';
     httpGetQuery += params.animeOrManga + '?'; 
+    params.query = encodeURIComponent(params.query.trim());//substituimos espacios por %20
     if(params.query != '') httpGetQuery += 'q=' + params.query + '&';
     if(stringListOfGenresById != '') httpGetQuery += 'genre=' + stringListOfGenresById;
 
@@ -91,6 +93,13 @@ export class FetchJikanService {
     return stringListOfGenresById;
   }
 
+  getEpisodes(id: number){
+    return this.http.get<IEpisodes>(this._url + 'anime/' + id + '/episodes');
+  }
+
+  getVolumes(id: number){
+    return this.http.get<IEpisodes>(this._url + 'anime/' + id + '/episodes');
+  }
 
 }
 

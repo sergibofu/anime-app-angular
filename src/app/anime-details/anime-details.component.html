@@ -1,9 +1,40 @@
 <div class="container-fluid text-center">
-    <h2 class="mx-auto">{{animeDetails.title}}</h2>  
-    <div class="row">
-        <div class="col col-12 col-lg-3 col-md-12 col-sm-12"><img class="rounded" src="{{animeDetails.image_url}}" alt=""></div>
-        <div class="col col-12 col-lg-9 col-md-12 col-sm-12">{{animeDetails.synopsis}}</div>
+    <h2 class="mx-auto">{{animeDetails.title}}</h2>
+    <div class="row mt-5">
+        <div class="col col-12 col-lg-3 col-md-12 col-sm-12"><img class="rounded" src="{{animeDetails.image_url}}"
+                alt=""></div>
+        <div id="synopsis" class="col col-12 col-lg-9 col-md-12 col-sm-12 gray-600 rounded">{{animeDetails.synopsis}}>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="d-grid gap-2 mt-5">
+
+        <div class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#listOfEpisodes"
+            aria-expanded="false" aria-controls="collapse">
+            Episodes
+        </div>
+    </div>
+    <div class="collapse" id="listOfEpisodes">
+        <table class="table table-hover mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Aired</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let episode of episodesList.episodes">
+                    <th scope="row">{{episode.episode_id}}</th>
+                    <td>{{episode.title}}</td>
+                    <td>{{episode.aired}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
-

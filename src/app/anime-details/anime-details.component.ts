@@ -14,6 +14,8 @@ export class AnimeDetailsComponent implements OnInit {
   private id: any = -1;
   public animeDetails: any = {
   };
+  public episodesList: any = {
+  };
 
 
   constructor(private jikan: FetchJikanService, private route: ActivatedRoute) { }
@@ -26,6 +28,9 @@ export class AnimeDetailsComponent implements OnInit {
 
     //recuperamos los detalles del anime utilizando la id
     this.getAnimeDetails();
+
+    //recuperamos la primera pagina de los episodios
+    this.getEpisodes();
   }
 
 
@@ -35,4 +40,14 @@ export class AnimeDetailsComponent implements OnInit {
       this.animeDetails = data;
     });
   }
+
+  getEpisodes(){
+    this.jikan.getEpisodes(this.id)
+    .subscribe((data)=>{
+      this.episodesList = data;
+      console.log(data.episodes);
+    })
+  }
 }
+
+
